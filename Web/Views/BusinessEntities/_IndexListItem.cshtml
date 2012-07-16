@@ -1,0 +1,10 @@
+﻿@model Web.Models.BusinessEntities.ListItem
+<script type="text/x-kendo-tmpl" id="template">
+<li class="business-entity">
+    <a href="@Url.Action("View")/${@Html.NameFor(m => m.Id)}" class="transition">
+        <h3>${@Html.NameFor(m => m.Name)}</h3>
+        <span class="hover-hidden">${@Html.NameFor(m => m.ShortDescription)}</span>
+        <span class="hover-visible">${@Html.NameFor(m => m.LongDescription)}</span>
+    </a>
+</li>
+</script>

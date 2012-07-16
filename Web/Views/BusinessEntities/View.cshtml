@@ -1,0 +1,39 @@
+﻿@model Web.Models.BusinessEntities.Details
+
+@{
+    ViewBag.Title = "Business Entity - " + @Model.Name;
+}
+
+<div class="page" data-url="@Url.Action("Index")">
+
+    <h2>Business Entity - @Model.Name</h2>
+
+    <fieldset>
+        <legend>Details</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ShortDescription)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.LongDescription)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LongDescription)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }, new {  @class = "transition" }) |
+        @Html.ActionLink("Back to List", "Index", null, new {  @class = "transition" })
+    </p>
+</div>

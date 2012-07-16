@@ -1,0 +1,21 @@
+﻿@model Web.Models.BusinessEntities.Search
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles {
+    @Styles.Render("~/Content/kendo/kendo.black.min.css")
+    @Styles.Render("~/Content/kendo/kendo.common.min.css")
+    @Styles.Render("~/Content/kendo/kendo.default.min.css")
+    @Styles.Render("~/Content/base.css")
+}
+
+@Html.Partial("_Index", Model)
+    
+@section scripts {
+    @Scripts.Render("~/Scripts/kendo.web.min.js")
+    @Scripts.Render("~/Scripts/kendo.aspnetmvc.min.js")
+    @Scripts.Render("~/Scripts/base.js")
+    @Scripts.Render("~/bundles/jqueryval")
+}

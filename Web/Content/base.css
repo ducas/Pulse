@@ -1,0 +1,194 @@
+﻿html, body { height: 100%; margin: 0; }
+
+ul.k-listview {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    ul.k-listview li { padding: 10px; }
+        ul.k-listview li h3 { margin: 0; }
+
+        ul.k-listview li:hover { background: lightyellow; }
+        
+        ul.k-listview li .hover-hidden { display: block; }
+        ul.k-listview li:hover .hover-hidden { display: none; }
+        ul.k-listview li .hover-visible { display: none; }
+        ul.k-listview li:hover .hover-visible { display: block; }
+
+        ul.k-listview li>a { text-decoration: none;background-color: transparent; }
+
+.main-content { position: relative; }
+
+.page {
+    display: none;
+    left: 100%;
+    outline: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+    .page.active {
+        display: block;
+        left: 0;
+    }
+
+/* Transitions from jQtouch (with small modifications): http://www.jqtouch.com/
+Built by David Kaneda and maintained by Jonathan Stark.
+*/
+.viewport-transitioning,
+.viewport-transitioning .page {
+    overflow: hidden;
+}
+
+.in, .out {
+    -moz-animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+
+    -moz-animation-duration: 350ms;
+    -webkit-animation-duration: 350ms;
+    -o-animation-duration: 350ms;
+    -ms-animation-duration: 350ms;
+    animation-duration: 350ms;
+}
+
+.slide.out {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+
+    -moz-animation-name: slideouttoleft;
+    -webkit-animation-name: slideouttoleft;
+    -o-animation-name: slideouttoleft;
+    -ms-animation-name: slideouttoleft;
+    animation-name: slideouttoleft;
+}
+.slide.in {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -o-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+
+    -moz-animation-name: slideinfromright;
+    -webkit-animation-name: slideinfromright;
+    -o-animation-name: slideinfromright;
+    -ms-animation-name: slideinfromright;
+    animation-name: slideinfromright;
+}
+
+.slide.out.reverse {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+
+    -moz-animation-name: slideouttoright;
+    -webkit-animation-name: slideouttoright;
+    -o-animation-name: slideouttoright;
+    -ms-animation-name: slideouttoright;
+    animation-name: slideouttoright;
+}
+.slide.in.reverse {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -o-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+
+    -moz-animation-name: slideinfromleft;
+    -webkit-animation-name: slideinfromleft;
+    -o-animation-name: slideinfromleft;
+    -ms-animation-name: slideinfromleft;
+    animation-name: slideinfromleft;
+}
+
+@-moz-keyframes slideinfromright {
+    from { -moz-transform: translateX(100%); }
+    to { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideinfromright {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(0); }
+}
+@-o-keyframes slideinfromright {
+    from { -o-transform: translateX(100%); }
+    to { -o-transform: translateX(0); }
+}
+@-ms-keyframes slideinfromright {
+    from { -ms-transform: translateX(100%); }
+    to { -ms-transform: translateX(0); }
+}
+@keyframes slideinfromright {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@-moz-keyframes slideinfromleft {
+    from { -moz-transform: translateX(-100%); }
+    to { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideinfromleft {
+    from { -webkit-transform: translateX(-100%); }
+    to { -webkit-transform: translateX(0); }
+}
+@-o-keyframes slideinfromleft {
+    from { -o-transform: translateX(-100%); }
+    to { -o-transform: translateX(0); }
+}
+@-ms-keyframes slideinfromleft {
+    from { -ms-transform: translateX(-100%); }
+    to { -ms-transform: translateX(0); }
+}
+@keyframes slideinfromleft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@-moz-keyframes slideouttoleft {
+    from { -moz-transform: translateX(0); }
+    to { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes slideouttoleft {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(-100%); }
+}
+@-o-keyframes slideouttoleft {
+    from { -o-transform: translateX(0); }
+    to { -o-transform: translateX(-100%); }
+}
+@-ms-keyframes slideouttoleft {
+    from { -ms-transform: translateX(0); }
+    to { -ms-transform: translateX(-100%); }
+}
+@keyframes slideouttoleft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+@-moz-keyframes slideouttoright {
+    from { -moz-transform: translateX(0); }
+    to { -moz-transform: translateX(100%); }
+}
+@-webkit-keyframes slideouttoright {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(100%); }
+}
+@-o-keyframes slideouttoright {
+    from { -o-transform: translateX(0); }
+    to { -o-transform: translateX(100%); }
+}
+@-ms-keyframes slideouttoright {
+    from { -ms-transform: translateX(0); }
+    to { -ms-transform: translateX(100%); }
+}
+@keyframes slideouttoright {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}

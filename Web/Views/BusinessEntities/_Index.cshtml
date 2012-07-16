@@ -1,0 +1,40 @@
+﻿@using Kendo.Mvc.UI
+@using Web.Models.BusinessEntities
+@model Search
+
+<div class="page active" data-url="@Url.Action("Index")">
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "transition" })
+    </p>
+
+    @Html.Partial("_IndexListItem", new ListItem())
+
+    @(Html.Kendo()
+        .ListView<ListItem>()
+        .Name("businessEntitiesList")
+        .TagName("ul")
+        .ClientTemplateId("template")
+        .Pageable()
+        .DataSource(d => d.Read(r => r.Action("IndexJson", "BusinessEntities")))
+        )
+
+    <p>I need some space here...</p>
+
+    @(Html.Kendo()
+        .Grid<ListItem>(Model.Items)
+        .Name("businesEntitiesGrid")
+        .Pageable()
+        .Columns(c =>
+            {
+                c.Bound(p => p.Id);
+                c.Bound(p => p.Name);
+                c.Bound(p => p.ShortDescription);
+                c.Bound(p => p.LongDescription);
+            })
+
+          )
+
+</div>

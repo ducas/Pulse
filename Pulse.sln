@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{8D4B0E22-B50C-4D47-8C1D-9C99A83F98F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{D6132F98-3769-45E1-AA29-165B62C6454E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KendoComplete", "KendoComplete", "{CA9591CE-6987-40EE-87CE-DFF7D334000F}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\KendoComplete\Kendo.Mvc.dll = Dependencies\KendoComplete\Kendo.Mvc.dll
+		Dependencies\KendoComplete\Kendo.Mvc.xml = Dependencies\KendoComplete\Kendo.Mvc.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D4B0E22-B50C-4D47-8C1D-9C99A83F98F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D4B0E22-B50C-4D47-8C1D-9C99A83F98F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D4B0E22-B50C-4D47-8C1D-9C99A83F98F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D4B0E22-B50C-4D47-8C1D-9C99A83F98F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA9591CE-6987-40EE-87CE-DFF7D334000F} = {D6132F98-3769-45E1-AA29-165B62C6454E}
+	EndGlobalSection
+EndGlobal
