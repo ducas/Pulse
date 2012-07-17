@@ -19,6 +19,7 @@
         .ClientTemplateId("busineEntitiesList_itemTemplate")
         .Pageable()
         .DataSource(d => d.Read(r => r.Action("IndexJson", "BusinessEntities")))
+        .Selectable(b => b.Mode(ListViewSelectionMode.Single))
         )
 
     <p>I need some space here...</p>

@@ -51,6 +51,25 @@
             navigate($(e.currentTarget).attr('href'));
         });
 
+        $(document).on('click', 'a.delete', function (e) {
+            var target = $(e.currentTarget),
+                listview = target.parents('.k-listview').first(),
+                datasource;
+            if (listview.length == 1 && confirm('really...?')) {
+                e.preventDefault();
+                datasource = listview.data('kendoListView').dataSource;
+                $.ajax({
+                    url: e.currentTarget.href,
+                    type: 'post',
+                    success: function (data) {
+                        if (data.success) {
+                            datasource.read();
+                        }
+                    }
+                });
+            }
+        });
+
         $(document).on('submit', 'form.ajax', function (e) {
             e.preventDefault();
 

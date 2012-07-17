@@ -170,6 +170,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessEntitiesController.cs" />
+    <Compile Include="Controllers\DeleteBusinessEntityRequest.cs" />
+    <Compile Include="Controllers\DeleteBusinessEntityResponse.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Context.cs" />
     <Compile Include="Core\CreateBusinessEntityRequest.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Core\GetBusinessEntityListResponse.cs" />
     <Compile Include="Core\GetBusinessEntityRequest.cs" />
     <Compile Include="Core\GetBusinessEntityResponse.cs" />
+    <Compile Include="Core\HasErrorCollection.cs" />
     <Compile Include="Core\IQueryBroker.cs" />
     <Compile Include="Core\IRequest.cs" />
     <Compile Include="Core\ListResult.cs" />

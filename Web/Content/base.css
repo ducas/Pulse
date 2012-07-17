@@ -9,13 +9,11 @@ ul.k-listview {
     ul.k-listview li { padding: 10px; }
         ul.k-listview li h3 { margin: 0; }
 
-        ul.k-listview li:hover { background: lightyellow; }
+        ul.k-listview li .selected-hidden { display: block; }
+        ul.k-listview li.k-state-selected .selected-hidden { display: none; }
+        ul.k-listview li .selected-visible { display: none; }
+        ul.k-listview li.k-state-selected .selected-visible { display: block; }
         
-        ul.k-listview li .hover-hidden { display: block; }
-        ul.k-listview li:hover .hover-hidden { display: none; }
-        ul.k-listview li .hover-visible { display: none; }
-        ul.k-listview li:hover .hover-visible { display: block; }
-
         ul.k-listview li>a { text-decoration: none;background-color: transparent; }
 
 .main-content { position: relative; }

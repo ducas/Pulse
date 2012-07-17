@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Web.Mvc;
 using AutoMapper;
 using Web.Core;
 using Web.Data;
@@ -49,6 +49,13 @@ namespace Web.Controllers
         {
             return broker
                 .Execute<CreateBusinessEntityRequest, CreateBusinessEntityResponse>(new CreateBusinessEntityRequest { Entity = model.Map<BusinessEntity>() })
+                .Errors;
+        }
+
+        protected override IEnumerable<KeyValuePair<string, string>> DeleteItem(Details model)
+        {
+            return broker
+                .Execute<DeleteBusinessEntityRequest, DeleteBusinessEntityResponse>(new DeleteBusinessEntityRequest { Id = model.Id })
                 .Errors;
         }
     }

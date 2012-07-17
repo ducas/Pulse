@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Web.Mvc;
 using Kendo.Mvc.UI;
 
@@ -44,10 +46,6 @@ namespace Web.Core
             return JsonErrorsOrView(model);
         }
 
-        protected abstract IEnumerable<KeyValuePair<string, string>> Update(TModel model);
-
-        protected abstract TModel Get(int id);
-
         [HttpGet]
         public ActionResult Create()
         {
@@ -67,7 +65,29 @@ namespace Web.Core
             return JsonErrorsOrView(model);
         }
 
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            return PartialOrFullView(null);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(TModel model)
+        {
+            var result = DeleteItem(model);
+            if (result == null || !result.Any()) return JsonOrRedirect("Index");
+
+            foreach (var e in result) ModelState.AddModelError(e.Key, e.Value);
+            return JsonErrorsOrView(model);
+        }
+
+        protected abstract TModel Get(int id);
+
         protected abstract IEnumerable<KeyValuePair<string, string>> CreateItem(TModel model);
+
+        protected abstract IEnumerable<KeyValuePair<string,string>>  DeleteItem(TModel model);
+
+        protected abstract IEnumerable<KeyValuePair<string, string>> Update(TModel model);
 
         private ActionResult JsonOrRedirect(string action)
         {
