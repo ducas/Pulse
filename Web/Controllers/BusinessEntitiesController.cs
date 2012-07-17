@@ -19,12 +19,15 @@ namespace Web.Controllers
 
         private readonly IQueryBroker broker = new QueryBroker();
 
-        protected override IEnumerable<object> GetList(int page, int pageSize)
+        protected override ListResult GetList(int page, int pageSize)
         {
-            return broker
-                .Execute<GetBusinessEntityListRequest, GetBusinessEntityListResponse>(new GetBusinessEntityListRequest { Page = page, PageSize = pageSize })
-                .Result
-                .Select(Mapper.Map<ListItem>);
+            var result = broker
+                .Execute<GetBusinessEntityListRequest, GetBusinessEntityListResponse>(new GetBusinessEntityListRequest { Page = page, PageSize = pageSize });
+            return new ListResult
+                {
+                    Total = result.TotalItems,
+                    Items = result.Result
+                };
         }
 
         protected override Details Get(int id)

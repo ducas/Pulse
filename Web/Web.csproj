@@ -180,6 +180,7 @@
     <Compile Include="Core\GetBusinessEntityResponse.cs" />
     <Compile Include="Core\IQueryBroker.cs" />
     <Compile Include="Core\IRequest.cs" />
+    <Compile Include="Core\ListResult.cs" />
     <Compile Include="Core\MaintenanceController.cs" />
     <Compile Include="Core\MappingExtensions.cs" />
     <Compile Include="Core\QueryBroker.cs" />

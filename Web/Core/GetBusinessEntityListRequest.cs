@@ -13,7 +13,8 @@ namespace Web.Core
                 {
                     Result = Context.Entities
                         .Skip((Page - 1) * PageSize)
-                        .Take(PageSize)
+                        .Take(PageSize),
+                    TotalItems = Context.Entities.Count
                 };
         }
     }

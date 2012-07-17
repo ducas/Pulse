@@ -14,11 +14,11 @@ namespace Web.Core
 
         public JsonResult IndexJson(DataSourceRequest request)
         {
-            var items = GetList(request.Page, request.PageSize);
-            return Json(new { Data = items, Total = items.Count() }, JsonRequestBehavior.AllowGet);
+            var result = GetList(request.Page, request.PageSize);
+            return Json(new { Data = result.Items, result.Total }, JsonRequestBehavior.AllowGet);
         }
 
-        protected abstract IEnumerable<object> GetList(int page, int pageSize);
+        protected abstract ListResult GetList(int page, int pageSize);
 
         public ActionResult View(int id)
         {

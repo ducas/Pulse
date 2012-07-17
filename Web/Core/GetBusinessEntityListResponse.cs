@@ -6,5 +6,7 @@ namespace Web.Core
     public class GetBusinessEntityListResponse
     {
         public IEnumerable<BusinessEntity> Result { get; set; }
+
+        public int TotalItems { get; set; }
     }
 }
