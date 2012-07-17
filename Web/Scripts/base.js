@@ -12,7 +12,12 @@
             return $(this).one(animationEndEventNames[Modernizr.prefixed('animation')], callback);
         };
 
-        $('.main-content').css('height', $('.page.active').height() + 30);
+        var currentPage = $('.page.active');
+        if (currentPage.length == 0) {
+            currentPage = $('.page').first();
+            currentPage.addClass('active');
+        }
+        setTimeout(function() { $('.main-content').css('height', currentPage.height()); });
 
         var navigate = function (url) {
             var dataUrl = 'data-url="' + url + '"';
@@ -21,15 +26,16 @@
                 success: function (data) {
                     $(document).find('div.page[' + dataUrl + ']').remove();
                     var to = $(data).appendTo($('.main-content')),
-                        from = $('.page.active');
+                        from = currentPage;
                     to.animationComplete(function () {
                         from.removeClass('active slide out');
                         to.removeClass('slide in');
+                        currentPage = to;
+                        $('.main-content').css('height', currentPage.height());
                     });
                     $('.main-content').addClass('viewport-transitioning');
                     from.addClass('slide out');
                     to.addClass('active slide in');
-                    $('.main-content').css('height', to.height() + 30);
                     setTimeout(function() {
                         $.validator.unobtrusive.parse(to.find('form'));
                     });

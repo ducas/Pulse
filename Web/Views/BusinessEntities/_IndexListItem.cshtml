@@ -1,5 +1,5 @@
 ﻿@model Web.Models.BusinessEntities.ListItem
-<script type="text/x-kendo-tmpl" id="template">
+<script type="text/x-kendo-tmpl" id="busineEntitiesList_itemTemplate">
 <li class="business-entity">
     <a href="@Url.Action("View")/${@Html.NameFor(m => m.Id)}" class="transition">
         <h3>${@Html.NameFor(m => m.Name)}</h3>

@@ -16,14 +16,14 @@
         .ListView<ListItem>()
         .Name("businessEntitiesList")
         .TagName("ul")
-        .ClientTemplateId("template")
+        .ClientTemplateId("busineEntitiesList_itemTemplate")
         .Pageable()
         .DataSource(d => d.Read(r => r.Action("IndexJson", "BusinessEntities")))
         )
 
     <p>I need some space here...</p>
 
-    @(Html.Kendo()
+   @* @(Html.Kendo()
         .Grid<ListItem>(Model.Items)
         .Name("businesEntitiesGrid")
         .Pageable()
@@ -35,6 +35,6 @@
                 c.Bound(p => p.LongDescription);
             })
 
-          )
+          )*@
 
 </div>

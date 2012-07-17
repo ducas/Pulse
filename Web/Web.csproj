@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\Dependencies\KendoComplete\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -168,6 +171,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessEntitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\Context.cs" />
+    <Compile Include="Core\CreateBusinessEntityRequest.cs" />
+    <Compile Include="Core\CreateBusinessEntityResponse.cs" />
+    <Compile Include="Core\GetBusinessEntityListRequest.cs" />
+    <Compile Include="Core\GetBusinessEntityListResponse.cs" />
+    <Compile Include="Core\GetBusinessEntityRequest.cs" />
+    <Compile Include="Core\GetBusinessEntityResponse.cs" />
+    <Compile Include="Core\IQueryBroker.cs" />
+    <Compile Include="Core\IRequest.cs" />
+    <Compile Include="Core\MappingExtensions.cs" />
+    <Compile Include="Core\QueryBroker.cs" />
+    <Compile Include="Core\UpdateBusinessEntityRequest.cs" />
+    <Compile Include="Core\UpdateBusinessEntityResponse.cs" />
     <Compile Include="Data\BusinessEntity.cs" />
     <Compile Include="Data\EntitiesContext.cs" />
     <Compile Include="Global.asax.cs">
