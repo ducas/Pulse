@@ -165,9 +165,11 @@
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ControllerFactoryConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Module\ModuleAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessEntitiesController.cs" />
     <Compile Include="Controllers\DeleteBusinessEntityRequest.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Core\ListResult.cs" />
     <Compile Include="Core\MaintenanceController.cs" />
     <Compile Include="Core\MappingExtensions.cs" />
+    <Compile Include="Core\MyControllerFactory.cs" />
     <Compile Include="Core\QueryBroker.cs" />
     <Compile Include="Core\UpdateBusinessEntityRequest.cs" />
     <Compile Include="Core\UpdateBusinessEntityResponse.cs" />
@@ -317,6 +320,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Module\Views\Web.config" />
+    <Content Include="Areas\Module\Views\Things\Index.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -395,9 +400,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Module\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Module\Module.csproj">
+      <Project>{df656fc1-0642-4236-a848-22d0945b7715}</Project>
+      <Name>Module</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
