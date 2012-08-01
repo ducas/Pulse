@@ -27,15 +27,21 @@
                     $(document).find('div.page[' + dataUrl + ']').remove();
                     var to = $(data).appendTo($('.main-content')),
                         from = currentPage;
-                    to.animationComplete(function () {
-                        from.removeClass('active slide out');
-                        to.removeClass('slide in');
-                        currentPage = to;
-                        $('.main-content').css('height', currentPage.height());
-                    });
-                    $('.main-content').addClass('viewport-transitioning');
-                    from.addClass('slide out');
-                    to.addClass('active slide in');
+                    if (Modernizr.cssanimations) {
+                        to.animationComplete(function() {
+                            from.removeClass('active slide out');
+                            to.removeClass('slide in');
+                            currentPage = to;
+                            $('.main-content').css('height', currentPage.height());
+                        });
+                        $('.main-content').addClass('viewport-transitioning');
+                        from.addClass('slide out');
+                        to.addClass('active slide in');
+                    }
+                    else {
+                        from.removeClass('active');
+                        to.addClass('active');
+                    }
                     setTimeout(function() {
                         $.validator.unobtrusive.parse(to.find('form'));
                     });
