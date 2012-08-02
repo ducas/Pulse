@@ -410,6 +410,10 @@
       <Project>{df656fc1-0642-4236-a848-22d0945b7715}</Project>
       <Name>Module</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OtherModule\OtherModule.csproj">
+      <Project>{5c76f8c6-36a4-45ed-ab7f-2cb3f3f24b3b}</Project>
+      <Name>OtherModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

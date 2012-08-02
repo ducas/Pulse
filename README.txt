@@ -1,0 +1,16 @@
+This is a prototype application to demonstrate the following:
+
+- Kendo UI
+- Abstracted CQRS
+- Modularity
+
+** Modularity
+
+This project demonstrates modularity in 2 ways.
+
+The first is with the Module area. This area and its HTML artifacts are defined in the Web application, but the supporting classes are in the Module project. The controllers are discovered with a custom controller factory named MyControllerFactory.
+
+The second is with the OtherModule area. This area has been created as a separate MVC project named OtherModule and referenced by the Web project. This allows *all* HTML, Scripts, Controllers, etc. to be defined in the module's project. For this to work, you must add OtherModules as a virtual directory. To do this in IIS Express either:
+
+# Modifying the application defintion in applicationhost.config to include <virtualDirectory path="/Areas/OtherModule" physicalPath="<physical_path>" />
+# Running IIS Express' appcmd.exe as follows: appcmd.exe add vdir /app.name:<appname> /path:/Areas/OtherModule /physicalPath:<physical_path>
