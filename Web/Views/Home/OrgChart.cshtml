@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Styles.Render("~/Content/jquery.orgchart.css")
+
+<style>
+    /* Custom chart styling */
+.jOrgChart {
+  margin                : 10px;
+  padding               : 20px;
+}
+
+/* Custom node styling */
+.jOrgChart .node {
+	font-size 			: 14px;
+	background-color 	: #35363B;
+	border-radius 		: 8px;
+	border 				: 5px solid white;
+	color 				: #F38630;
+	-moz-border-radius 	: 8px;
+}
+	.node p {
+		font-family 	: tahoma;
+		font-size 		: 10px;
+		line-height 	: 11px;
+		padding 		: 2px;
+	}
+    .node a {
+        color: #F38630;
+    }
+
+    .node label {
+        display: inline;
+    }
+    .disabled .node {
+        background-color: gray;
+    }
+
+.other-nodes {
+    list-style: none;
+    width: 100px;
+    float: left;
+}
+    .other-nodes li
+    {
+        border: 1px solid black;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        padding: 4px;
+        margin: 4px;
+    }
+    .other-nodes li.ui-draggable-dragging {
+        background: blue;
+        color: white;
+    }
+
+#orgChart {
+    float: left;
+    clear: right;
+}
+</style>
+
+<div>
+    <ul class="other-nodes">
+        <li class="node">McDonald's</li> <!-- these need to have a class of node so that jOrgChart knows it can accept them on droppables -->
+        <li class="node">KFC</li>
+        <li class="node">Junk Food</li>
+    </ul>
+    <ul id="org" style="display:none">
+        <li>
+            Food
+            <ul>
+                <li>Beer</li>
+                <li>Vegetables
+                    <ul>
+                        <li>Pumpkin</li>
+                        <li><a href="http://tquila.com" target="_blank">Aubergine</a></li>
+                    </ul>
+                </li>
+                <li>Bread</li>
+                <li>Chocolate
+                    <p><input type="checkbox" name="chocolate"/><label for="chocolate">Disable</label></p>
+                    <ul>
+                        <li>Topdeck</li>
+                        <li>Reese's Cups</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="orgChart"></div>
+
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/jquery.orgchart.js")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#org").jOrgChart({
+                chartElement: '#orgChart',
+                dragAndDrop: true
+            });
+            $('#org').on('DOMSubtreeModified', function () {
+                console.log('tree modified');
+            });
+            $('.other-nodes li').draggable();
+            $(document).on('click', '.jOrgChart input[type=checkbox]', function (e) {
+                var $this = $(this);
+                var $tr = $this.closest('tr');
+                if ($tr.hasClass('contracted') || $tr.hasClass('expanded')) {
+                    $this.closest('div.node').click();
+                }
+                $tr.closest('table').toggleClass('disabled');
+                e.stopPropagation();
+            });
+            $(document).on('drop', '.jOrgChart .node', function (event, ui) {
+
+                if (!ui.draggable.is('.other-nodes li')) return;
+
+                var targetId = $(this).data("tree-node");
+                var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetId; });
+                var targetUl = targetLi.children('ul');
+
+                var sourceLi = '<li>' + ui.draggable.text() + '</li>';
+                if (targetUl.length > 0) {
+                    targetUl.append(sourceLi);
+                } else {
+                    $("<ul />")
+                        .appendTo(targetLi)
+                        .append(sourceLi);
+                }
+
+                ui.draggable.remove();
+
+                $('#orgChart').children().remove();
+                $("#org").jOrgChart({
+                    chartElement: '#orgChart',
+                    dragAndDrop: true
+                });
+            });
+        });
+    </script>
+}

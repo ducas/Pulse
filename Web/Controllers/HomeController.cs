@@ -28,5 +28,10 @@ namespace Web.Controllers
 
             return View();
         }
+
+        public ActionResult OrgChart()
+        {
+            return View();
+        }
     }
 }

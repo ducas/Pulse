@@ -1,8 +1,9 @@
 This is a prototype application to demonstrate the following:
 
 - Kendo UI
-- Abstracted CQRS
+- Abstracted CQRS in Controllers
 - Modularity
+- Org Chart
 
 ** Modularity
 
@@ -14,3 +15,11 @@ The second is with the OtherModule area. This area has been created as a separat
 
 # Modifying the application defintion in applicationhost.config to include <virtualDirectory path="/Areas/OtherModule" physicalPath="<physical_path>" />
 # Running IIS Express' appcmd.exe as follows: appcmd.exe add vdir /app.name:<appname> /path:/Areas/OtherModule /physicalPath:<physical_path>
+
+** Org Chart
+
+Go to /Home/OrgChart. This page has an organisational chart control (jQuery Org Chart - https://github.com/wesnolte/jOrgChart) that has been enabled for:
+
+# Drag and drop of items in the chart
+# Dragging items from another list into the chart
+# Disabling an item and all its children using a checkbox
