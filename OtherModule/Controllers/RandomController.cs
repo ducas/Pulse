@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Common;
 
 namespace OtherModule.Controllers
 {
@@ -13,7 +14,15 @@ namespace OtherModule.Controllers
 
         public ActionResult Index()
         {
-            return Json(new { Id = 1 }, JsonRequestBehavior.AllowGet);
+            return View(new Address
+            {
+                Line1 = "Unit 1",
+                Line2 = "12 Test Rd",
+                City = "Testington",
+                Region = "Testville",
+                PostalCode = "TST123",
+                Country = "Testonia"
+            });
         }
 
     }

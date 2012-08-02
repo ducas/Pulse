@@ -400,6 +400,7 @@
     <Content Include="Views\BusinessEntities\_Index.cshtml" />
     <Content Include="Views\BusinessEntities\Create.cshtml" />
     <Content Include="Views\Home\OrgChart.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -409,6 +410,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{f0ef6464-c974-4ab2-afbf-b26c82540872}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Module.csproj">
       <Project>{df656fc1-0642-4236-a848-22d0945b7715}</Project>
       <Name>Module</Name>
