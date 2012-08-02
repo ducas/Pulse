@@ -15,7 +15,7 @@ The second is with the OtherModule area. This area has been created as a separat
 
 1. Modifying the application defintion in applicationhost.config to include:
 <pre><code>
-<virtualDirectory path="/Areas/OtherModule" physicalPath="<physical_path>" />
+&lt;virtualDirectory path="/Areas/OtherModule" physicalPath="<physical_path>" /&gt;
 </code></pre>
 2. Running IIS Express' appcmd.exe as follows:
 <pre><code>
