@@ -2,8 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-@Styles.Render("~/Content/jquery.orgchart.css")
-
+@section styles {
+    @Styles.Render("~/Content/jquery.orgchart.css")
+    @Styles.Render("~/Content/kendo/kendo.black.min.css")
+    @Styles.Render("~/Content/kendo/kendo.common.min.css")
+    @Styles.Render("~/Content/kendo/kendo.default.min.css")
+    @Styles.Render("~/Content/base.css")
 <style>
     /* Custom chart styling */
 .jOrgChart {
@@ -38,18 +42,14 @@
     }
 
 .other-nodes {
-    list-style: none;
     width: 100px;
     float: left;
 }
-    .other-nodes li
-    {
-        border: 1px solid black;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        padding: 4px;
-        margin: 4px;
+    .other-nodes li {
+        cursor: pointer;
+    }
+    .other-nodes li:hover {
+        background-color: orange;
     }
     .other-nodes li.ui-draggable-dragging {
         background: blue;
@@ -61,13 +61,14 @@
     clear: right;
 }
 </style>
+}
 
 <div>
-    <ul class="other-nodes">
-        <li class="node">McDonald's</li> <!-- these need to have a class of node so that jOrgChart knows it can accept them on droppables -->
-        <li class="node">KFC</li>
-        <li class="node">Junk Food</li>
-    </ul>
+    <script type="text/x-kendo-tmpl" id="otherNodeTemplate">
+        <li class="node" data-id="${Id}">${Name}</li>
+    </script>
+    <!-- these need to have a class of node so that jOrgChart knows it can accept them on droppables -->
+    <ul id="otherNodesList" class="other-nodes"></ul>
     <ul id="org" style="display:none">
         <li>
             Food
@@ -97,6 +98,8 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/Scripts/jquery.orgchart.js")
+    @Scripts.Render("~/Scripts/kendo.web.min.js")
+    @Scripts.Render("~/Scripts/kendo.aspnetmvc.min.js")
     <script type="text/javascript">
         $(document).ready(function() {
             $("#org").jOrgChart({
@@ -106,7 +109,35 @@
             $('#org').on('DOMSubtreeModified', function () {
                 console.log('tree modified');
             });
-            $('.other-nodes li').draggable();
+
+            var otherData = [
+                { Id: 1, Name: "McDonald's" },
+                { Id: 2, Name: "KFC" },
+                { Id: 3, Name: "Oporto" }
+            ];
+
+            var dataSource = new kendo.data.DataSource({ data: otherData });
+            
+            var listview = $("#otherNodesList")
+                .kendoListView({
+                    dataSource: dataSource,
+                    template: kendo.template($("#otherNodeTemplate").html())
+                })
+                .data('kendoListView');
+            
+            dataSource.read();
+
+            function makeDraggable() {
+                $('.other-nodes li').draggable({
+                    stop: function () {
+                        listview.refresh();
+                        makeDraggable();
+                    }
+                });
+            }
+
+            makeDraggable();
+
             $(document).on('click', '.jOrgChart input[type=checkbox]', function (e) {
                 var $this = $(this);
                 var $tr = $this.closest('tr');
@@ -124,7 +155,10 @@
                 var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetId; });
                 var targetUl = targetLi.children('ul');
 
-                var sourceLi = '<li>' + ui.draggable.text() + '</li>';
+                var itemId = ui.draggable.data('uid');
+                var item = dataSource.getByUid(itemId);
+                
+                var sourceLi = '<li>' + item.Name + '</li>';
                 if (targetUl.length > 0) {
                     targetUl.append(sourceLi);
                 } else {
@@ -133,7 +167,9 @@
                         .append(sourceLi);
                 }
 
-                ui.draggable.remove();
+                dataSource.remove(item);
+                listview.refresh();
+                makeDraggable();
 
                 $('#orgChart').children().remove();
                 $("#org").jOrgChart({
